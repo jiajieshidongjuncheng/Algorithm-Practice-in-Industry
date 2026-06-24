@@ -59,7 +59,7 @@ jobs:
         env:
           # 可配置的环境变量
           FEISHU_URL: ${{ secrets.FEISHU_URL }}
-          QUALITY_SCORE_THRESHOLD: "6"
+          QUALITY_SCORE_THRESHOLD: "7"
           RETURN_PAPERS: "6"
           # 确保脚本可以找到所需模块
           PYTHONPATH: ${{ github.workspace }}
