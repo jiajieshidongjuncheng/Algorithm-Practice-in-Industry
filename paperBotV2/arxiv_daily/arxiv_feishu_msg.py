@@ -182,7 +182,14 @@ def main():
         return
     
     # 按照精排分数排序并选择前N篇论文
-    papers_with_score = [p for p in papers if 'rerank_relevance_score' in p and p.get('is_fine_ranked', False)]
+    papers_with_score = [
+        p for p in papers
+        if (
+            'rerank_relevance_score' in p
+            and p.get('is_fine_ranked', False)
+            and p.get('quality_score', QUALITY_SCORE_THRESHOLD) >= QUALITY_SCORE_THRESHOLD
+        )
+    ]
     papers_with_score.sort(key=lambda x: x['rerank_relevance_score'], reverse=True)
     selected_papers = papers_with_score[:RETURN_PAPERS]
     
