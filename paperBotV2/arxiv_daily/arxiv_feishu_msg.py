@@ -8,7 +8,8 @@ from datetime import datetime
 FEISHU_URLS = os.environ.get("FEISHU_URL", "").split(',')
 # 去除空字符串和空格
 FEISHU_URLS = [url.strip() for url in FEISHU_URLS if url.strip()]
-RETURN_PAPERS = int("6")
+RETURN_PAPERS = int(os.environ.get("RETURN_PAPERS", "6"))
+QUALITY_SCORE_THRESHOLD = int(os.environ.get("QUALITY_SCORE_THRESHOLD", "8"))
 
 
 def get_latest_json_file(json_dir):
