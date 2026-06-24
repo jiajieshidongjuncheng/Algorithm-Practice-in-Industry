@@ -100,19 +100,37 @@ Score caps:
 - Cap at 4 if relevance is based only on keywords in the title but the abstract's core contribution is elsewhere.
 - Cap at 7 for general LLM architecture/training papers unless the abstract gives a concrete reason it helps long-context retrieval, ranking, user modeling, efficient serving, or search/recommendation systems.
 
+# Quality Calibration
+Assign a separate quality_score from 1 to 10. This measures paper quality, not topic relevance.
+Consider novelty, technical depth, clarity of problem formulation, methodological soundness, transferability, and whether the idea is more than a shallow application.
+- 9-10: Strong novelty and technical depth; the idea is reusable, well-motivated, and likely worth reading even beyond one narrow dataset.
+- 7-8: Solid paper with a clear method or insight; some limitations, but generally worth reading.
+- 5-6: Acceptable but incremental, narrow, or mostly engineering/application with limited reusable insight.
+- 3-4: Weak novelty, unclear method, thin contribution, overclaiming, or mostly a benchmark/application without deep insight.
+- 1-2: Very low quality, vague, poorly motivated, or unlikely to be useful.
+
+Quality penalties:
+- Penalize papers that are mainly dataset/benchmark announcements with little methodological insight.
+- Penalize papers that are domain demos where the reusable technical idea is weak.
+- Penalize papers whose claimed contribution is mostly combining standard components without a clear new mechanism.
+- Penalize abstracts that overemphasize empirical gains but do not explain a concrete idea.
+
+
 # Required Reasoning Process
 Before deciding the final score, internally identify:
 1. The paper's main technical object.
 2. Whether that object is directly, indirectly, or not related to RecSys/Search/Ads/LLM-ranking systems.
 3. The strongest evidence sentence or phrase from the abstract supporting the score.
-4. Any score cap that applies.
+4. The paper's quality signals and weaknesses.
+5. Any score cap that applies.
 Do not output these steps separately; use them to make the score calibrated.
 
 # Output Requirements
 Based on the paper's Title and Abstract:
 1. rerank_relevance_score: an integer from 1 to 10 following the rubric above.
-2. rerank_reasoning: 1-2 concise Chinese sentences. Mention the main technical object and why the score is high/low. If a score cap applies, reflect that reason naturally.
-3. summary: 1-2 dense Chinese sentences focusing only on the core idea. Answer: what problem is studied, and what method/idea is proposed.
+2. quality_score: an integer from 1 to 10 following the quality rubric above.
+3. rerank_reasoning: 1-2 concise Chinese sentences. Mention the main technical object, relevance, and quality reason. If a score cap or quality penalty applies, reflect that reason naturally.
+4. summary: 1-2 dense Chinese sentences focusing only on the core idea. Answer: what problem is studied, and what method/idea is proposed.
 
 Do not include experimental numbers, SOTA claims, dataset sizes, percentage improvements, leaderboard claims, or code-release details in summary.
 Do not overrate papers because they mention LLMs, agents, RAG, or multimodality; rate the actual contribution.
@@ -125,6 +143,7 @@ Return valid JSON only. No markdown, no extra text.
 # Output Format
 {{
   "rerank_relevance_score": <integer>,
+  "quality_score": <integer>,
   "rerank_reasoning": "...",
   "summary": "..."
 }}
