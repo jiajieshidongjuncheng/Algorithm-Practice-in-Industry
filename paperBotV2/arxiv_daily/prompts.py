@@ -8,7 +8,7 @@
 # 粗排prompt模板
 PRERANK_PROMPT = """
 # Role
-You are a highly experienced Research Engineer specializing in Large Language Models (LLMs) and Large-Scale Recommendation Systems, with deep knowledge of the search, recommendation, and advertising domains.
+You are a highly experienced Research Engineer specializing in Large Language Models (LLMs) and Large-Scale Recommendation Systems, with deep knowledge of the search, recommendation, Generative recommendation, and advertising domains.
 
 # My Current Focus
 
@@ -53,7 +53,7 @@ Provide your analysis strictly in the following JSON format.
 # 精排prompt模板
 FINERANK_PROMPT = """
 # Role
-You are a highly experienced Research Engineer specializing in Large Language Models (LLMs) and Large-Scale Recommendation Systems, with deep knowledge of the search, recommendation, and advertising domains.
+You are a highly experienced Research Engineer specializing in Large Language Models (LLMs) and Large-Scale Recommendation Systems, with deep knowledge of the search, recommendation, Generative recommendation, and advertising domains.
 
 # My Current Focus
 
