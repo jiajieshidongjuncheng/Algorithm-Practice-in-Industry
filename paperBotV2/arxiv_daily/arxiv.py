@@ -601,6 +601,16 @@ def perform_rough_ranking(all_papers, run_status=None):
 def perform_fine_ranking(filtered_papers, all_papers, run_status=None):
     """执行精排并标记精排状态"""
     final_papers = fine_rank_papers(filtered_papers, paper_count=RETURN_PAPERS)
+    quality_filtered_papers = [
+        paper for paper in final_papers
+        if paper.get('quality_score', 0) >= QUALITY_SCORE_THRESHOLD
+    ]
+    low_quality_count = len(final_papers) - len(quality_filtered_papers)
+    if low_quality_count:
+        print(
+            f"⚠️ 质量过滤移除 {low_quality_count} 篇论文，"
+            f"阈值 QUALITY_SCORE_THRESHOLD={QUALITY_SCORE_THRESHOLD}"
+        )
     if run_status:
         run_status.record_fine_rank(
             total=min(len(filtered_papers), RETURN_PAPERS),
@@ -611,10 +621,12 @@ def perform_fine_ranking(filtered_papers, all_papers, run_status=None):
     for paper in final_papers:
         arxiv_id = paper['arxiv_id']
         all_papers[arxiv_id].update(paper)  # 更新精排信息
-        all_papers[arxiv_id]['is_fine_ranked'] = True  # 标记为已精排
+        all_papers[arxiv_id]['is_fine_ranked'] = (
+            paper.get('quality_score', 0) >= QUALITY_SCORE_THRESHOLD
+        )  # 只有质量达标的论文进入飞书候选
     
-    print(f"🏆 精排得到 {len(final_papers)} 篇顶级论文。")
-    return final_papers
+    print(f"🏆 精排得到 {len(final_papers)} 篇论文，质量达标 {len(quality_filtered_papers)} 篇。")
+    return quality_filtered_papers
 
 
 def save_results_to_json(all_papers):
