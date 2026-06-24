@@ -212,7 +212,7 @@ def request_arxiv_page(base_urls, query_params):
 def call_deepseek_api(prompt_content: str,
                       
                       api_key: str = None,
-                      model: str = "deepseek-v4-pro",
+                      model: str = "deepseek-v4-flash",
                       base_url: str = "https://api.deepseek.com/v1"):
     """
     调用 DeepSeek API 并以 JSON 格式返回结果。
@@ -238,7 +238,6 @@ def call_deepseek_api(prompt_content: str,
         response = client.chat.completions.create(
             model=model,
             messages=messages,
-            reasoning_effort="high",
             response_format={'type': 'json_object'}  # 强制返回 JSON
         )
         response_content = response.choices[0].message.content
