@@ -60,7 +60,7 @@ jobs:
           FEISHU_URL: ${{ secrets.FEISHU_URL }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           # 目标分类，使用逗号分隔的字符串格式
-          TARGET_CATEGORYS: "cs.IR,cs.CL,cs.CV"
+          TARGET_CATEGORYS: "cs.IR,cs.CL"
           # 单页抓取数量，实际抓取会按页遍历
           MAX_PAPERS: "100"
           # 回看最近36小时，减少 arXiv 更新延迟导致的漏抓
@@ -68,7 +68,7 @@ jobs:
           # arXiv API 分页和限流保护配置
           ARXIV_PAGE_SIZE: "100"
           ARXIV_MAX_PAGES: "20"
-          ARXIV_CATEGORY_MAX_PAGES: "cs.IR:8,cs.CL:8,cs.CV:5"
+          ARXIV_CATEGORY_MAX_PAGES: "cs.IR:8,cs.CL:8"
           ARXIV_REQUEST_INTERVAL: "60"
           ARXIV_CATEGORY_INTERVAL: "120"
           ARXIV_JITTER_SECONDS: "120"
