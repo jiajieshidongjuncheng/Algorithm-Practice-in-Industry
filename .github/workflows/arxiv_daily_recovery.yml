@@ -66,7 +66,7 @@ jobs:
           ARXIV_LOOKBACK_HOURS: "36"
           ARXIV_PAGE_SIZE: "100"
           ARXIV_MAX_PAGES: "20"
-          ARXIV_CATEGORY_MAX_PAGES: "cs.IR:8,cs.CL:8"
+          ARXIV_CATEGORY_MAX_PAGES: "cs.IR:3,cs.CL:3"
           ARXIV_REQUEST_INTERVAL: "60"
           ARXIV_CATEGORY_INTERVAL: "120"
           ARXIV_JITTER_SECONDS: "120"
@@ -77,7 +77,7 @@ jobs:
           ARXIV_RETRY_MAX_WAIT: "2400"
           ARXIV_API_BASE_URLS: "https://export.arxiv.org/api/query,https://arxiv.org/api/query"
           ROUGH_SCORE_THRESHOLD: "4"
-          RETURN_PAPERS: "20"
+          RETURN_PAPERS: "6"
           PYTHONPATH: ${{ github.workspace }}
           PYTHONUNBUFFERED: "1"
         run: |
