@@ -3,25 +3,25 @@
   "status": "success",
   "stage": "completed",
   "workflow": "arxiv_daily_full",
-  "run_id": "28147444536",
+  "run_id": "28152653619",
   "run_attempt": "1",
-  "trigger": "workflow_dispatch",
-  "started_at": "2026-06-25T04:45:36+00:00",
-  "ended_at": "2026-06-25T04:49:30+00:00",
+  "trigger": "schedule",
+  "started_at": "2026-06-25T06:58:25+00:00",
+  "ended_at": "2026-06-25T07:03:00+00:00",
   "fetch": {
     "success": true,
-    "total_papers": 97,
+    "total_papers": 93,
     "by_category": {
       "cs.IR": {
         "success": true,
         "papers": 17,
-        "pages": 1,
+        "pages": 0,
         "error": ""
       },
       "cs.CL": {
         "success": true,
-        "papers": 80,
-        "pages": 1,
+        "papers": 76,
+        "pages": 0,
         "error": ""
       }
     }
@@ -33,8 +33,8 @@
     "fine_rank_total": 20,
     "fine_rank_success": 20,
     "fine_rank_failed": 0,
-    "avg_rough_score": 2.95,
-    "avg_fine_score": 6.7
+    "avg_rough_score": 2.83,
+    "avg_fine_score": 6.45
   },
   "output": {
     "daily_json_written": true,
